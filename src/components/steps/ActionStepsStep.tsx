@@ -17,10 +17,12 @@ export const ActionStepsStep = ({
   onGenerate 
 }: ActionStepsStepProps) => {
   useEffect(() => {
-    if (!actionableSteps.length) {
+    console.log("ActionStepsStep mounted, actionableSteps.length:", actionableSteps.length);
+    if (!actionableSteps.length && !isGenerating) {
+      console.log("No actionable steps and not generating, calling onGenerate");
       onGenerate();
     }
-  }, [actionableSteps.length, onGenerate]);
+  }, [actionableSteps.length, onGenerate, isGenerating]);
 
   return (
     <StepCard>

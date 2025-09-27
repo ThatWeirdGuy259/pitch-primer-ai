@@ -32,7 +32,7 @@ export const useStartupWizard = () => {
   }, []);
 
   const nextStep = useCallback(() => {
-    setCurrentStep(prev => Math.min(prev + 1, 6));
+    setCurrentStep(prev => Math.min(prev + 1, 7));
   }, []);
 
   const prevStep = useCallback(() => {
@@ -112,6 +112,7 @@ First-mover advantage in this specific niche, proprietary technology, and deep u
   }, [simulateAIGeneration, updateData, nextStep]);
 
   const generateActionableSteps = useCallback(async () => {
+    console.log("generateActionableSteps called");
     await simulateAIGeneration(2000);
     const steps = [
       "Conduct market research and validate your target audience",
@@ -123,7 +124,9 @@ First-mover advantage in this specific niche, proprietary technology, and deep u
       "Create a go-to-market strategy and pricing model",
       "Secure initial funding or bootstrap your growth",
     ];
+    console.log("Setting actionable steps:", steps);
     updateData({ actionableSteps: steps });
+    console.log("Moving to next step");
     nextStep();
   }, [simulateAIGeneration, updateData, nextStep]);
 

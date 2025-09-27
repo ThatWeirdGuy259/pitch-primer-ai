@@ -105,7 +105,10 @@ export const StartupWizard = () => {
             selectedIdea={startupData.productIdeas[startupData.selectedIdeaIndex]}
             businessDraft={startupData.businessDraft}
             isGenerating={isGenerating}
-            onNext={generateActionableSteps}
+            onNext={() => {
+              console.log("Business draft onNext called, generating action steps");
+              generateActionableSteps();
+            }}
             onGenerate={handleBusinessDraftGenerate}
           />
         );
