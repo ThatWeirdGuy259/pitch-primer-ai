@@ -67,6 +67,13 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundSize: {
+        '200': '200%',
+      },
+      backgroundPosition: {
+        '0': '0%',
+        '100': '100%',
+      },
       keyframes: {
         "accordion-down": {
           from: {
