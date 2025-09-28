@@ -86,20 +86,17 @@ export const useStartupWizard = () => {
     const draft = `
 **STARTUP CONCEPT DRAFT**
 
-**Problem Statement:**
-${problem}
-
 **Business Question:**
 ${question}
 
 **Solution:**
 ${selectedIdea}
 
-**Target Audience:**
-Early adopters and professionals seeking efficient solutions to streamline their workflow and eliminate common pain points.
+**Target Opportunity:**
+Based on the business question, this solution targets professionals and users who face the specific challenges identified in the opportunity analysis.
 
 **Unique Value Proposition:**
-Revolutionary approach combining AI-driven insights with user-centric design to deliver measurable results and exceptional user experience.
+Revolutionary approach combining AI-driven insights with user-centric design to deliver measurable results and exceptional user experience that directly addresses the core business question.
 
 **Revenue Model:**
 - Freemium model with basic features
@@ -108,10 +105,13 @@ Revolutionary approach combining AI-driven insights with user-centric design to 
 - API access and integration fees
 
 **Market Opportunity:**
-Addressing a $2B+ market with growing demand for innovative solutions and strong user adoption rates.
+Addressing a significant market opportunity with growing demand for innovative solutions and strong user adoption rates based on the identified business question.
 
 **Competitive Advantage:**
-First-mover advantage in this specific niche, proprietary technology, and deep understanding of user needs.
+First-mover advantage in this specific niche, proprietary technology, and deep understanding of the specific user needs outlined in the business question.
+
+**Next Steps:**
+Ready to proceed with detailed market validation and MVP development based on this targeted approach.
     `.trim();
     
     updateData({ businessDraft: draft });
