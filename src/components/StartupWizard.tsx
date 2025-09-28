@@ -131,8 +131,8 @@ export const StartupWizard = () => {
   return (
     <div className="min-h-screen">
       {currentStep > 1 && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-          <div className="container mx-auto px-4 py-4">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+          <div className="container mx-auto px-4 py-3 md:py-4">
             <ProgressIndicator
               currentStep={currentStep - 1}
               totalSteps={6}
@@ -142,8 +142,8 @@ export const StartupWizard = () => {
         </div>
       )}
       
-      <div className={currentStep > 1 ? "pt-24" : ""}>
-        <div className="container mx-auto px-4 py-8">
+      <div className={currentStep > 1 ? "pt-20 md:pt-24" : ""}>
+        <div className="container mx-auto px-4 py-4 md:py-8">
           {renderCurrentStep()}
         </div>
       </div>

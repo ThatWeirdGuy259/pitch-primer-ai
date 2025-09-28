@@ -21,12 +21,12 @@ export const HeroStep = ({ onStart }: HeroStepProps) => {
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              Kickstarter AI
+              FounderAI
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in">
-            Transform your problems into <span className="text-accent font-semibold">investor-ready startup ideas</span> with our AI-powered guidance
+            Transform your problems into <span className="text-accent font-semibold">personalized startup roadmaps</span> with premium AI-powered guidance
           </p>
           
           <Button 
