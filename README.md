@@ -1,8 +1,17 @@
-# Welcome to your Lovable project
+# Startup Wizard
+
+A React-based startup idea generator that helps entrepreneurs develop their business concepts through an interactive wizard.
+
+## Features
+
+- **Problem Identification**: Define the core problem your startup will solve
+- **AI-Generated Business Questions**: Get personalized business questions using real AI
+- **Product Ideas**: Explore different solution approaches
+- **Personalized Roadmap**: Receive custom actionable steps tailored to your specific idea
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/6e7fdab8-415a-410a-8c35-7607eb10c3da
+**Lovable URL**: https://lovable.dev/projects/6e7fdab8-415a-410a-8c35-7607eb10c3da
 
 ## How can I edit this code?
 
@@ -32,9 +41,23 @@ cd <YOUR_PROJECT_NAME>
 # Step 3: Install the necessary dependencies.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Configure AI Service (Optional but recommended):
+cp .env.example .env
+# Edit .env and add your OpenAI API key: VITE_OPENAI_API_KEY=your_key_here
+
+# Step 5: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
+
+### AI Configuration
+
+To get personalized AI-generated content instead of fallback responses:
+
+1. Copy the environment template: `cp .env.example .env`
+2. Get an API key from [OpenAI](https://platform.openai.com/api-keys)
+3. Add it to your `.env` file: `VITE_OPENAI_API_KEY=your_openai_api_key_here`
+
+**Note**: Without an API key, the app will use generic fallback responses.
 
 **Edit a file directly in GitHub**
 

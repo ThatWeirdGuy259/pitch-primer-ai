@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { AIService } from "@/services/aiService";
 
 export interface StartupData {
   problem: string;
@@ -52,16 +53,22 @@ export const useStartupWizard = () => {
   }, []);
 
   const generateBusinessQuestion = useCallback(async (problem: string) => {
-    await simulateAIGeneration(1500);
-    const questions = [
-      `How might we create a digital solution that addresses the core frustration of ${problem.toLowerCase()}?`,
-      `How might we leverage technology to transform the way people experience ${problem.toLowerCase()}?`,
-      `How might we build a scalable platform that eliminates ${problem.toLowerCase()} for our target audience?`,
-    ];
-    const selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
-    updateData({ businessQuestion: selectedQuestion });
-    nextStep();
-  }, [simulateAIGeneration, updateData, nextStep]);
+    setIsGenerating(true);
+    try {
+      const businessQuestion = await AIService.generateBusinessQuestion(problem);
+      updateData({ businessQuestion });
+      nextStep();
+    } catch (error) {
+      console.error('Failed to generate business question:', error);
+      // Fallback to a generic question
+      updateData({ 
+        businessQuestion: `How might we create an innovative solution that addresses ${problem.toLowerCase()}?` 
+      });
+      nextStep();
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [updateData, nextStep]);
 
   const generateProductIdeas = useCallback(async (businessQuestion: string) => {
     await simulateAIGeneration(2000);
@@ -112,23 +119,35 @@ First-mover advantage in this specific niche, proprietary technology, and deep u
   }, [simulateAIGeneration, updateData, nextStep]);
 
   const generateActionableSteps = useCallback(async () => {
-    console.log("generateActionableSteps called");
-    await simulateAIGeneration(2000);
-    const steps = [
-      "Conduct market research and validate your target audience",
-      "Create a minimum viable product (MVP) prototype",
-      "Build a landing page and start collecting email signups",
-      "Develop your core product features and user interface",
-      "Launch beta testing with 10-20 early users",
-      "Implement user feedback and iterate on your product",
-      "Create a go-to-market strategy and pricing model",
-      "Secure initial funding or bootstrap your growth",
-    ];
-    console.log("Setting actionable steps:", steps);
-    updateData({ actionableSteps: steps });
-    console.log("Moving to next step");
-    nextStep();
-  }, [simulateAIGeneration, updateData, nextStep]);
+    setIsGenerating(true);
+    try {
+      const selectedIdea = startupData.productIdeas[startupData.selectedIdeaIndex];
+      const steps = await AIService.generateActionableSteps(
+        startupData.problem,
+        startupData.businessQuestion, 
+        selectedIdea
+      );
+      updateData({ actionableSteps: steps });
+      nextStep();
+    } catch (error) {
+      console.error('Failed to generate actionable steps:', error);
+      // Fallback steps
+      const fallbackSteps = [
+        "Validate your problem through customer interviews",
+        "Research your target market and competitors", 
+        "Build a minimum viable product (MVP)",
+        "Test with early users and gather feedback",
+        "Iterate based on user insights",
+        "Develop your business model and pricing",
+        "Create a go-to-market strategy",
+        "Launch and scale your solution"
+      ];
+      updateData({ actionableSteps: fallbackSteps });
+      nextStep();
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [startupData, updateData, nextStep]);
 
   return {
     currentStep,
